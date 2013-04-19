@@ -1,5 +1,5 @@
 #
-# Copyright 2012 Google Inc.
+# Copyright 2013 Google Inc.
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -23,11 +23,12 @@ F_CPU   = 12000000  # in Hz
 
 AVRDUDE = avrdude -c usbasp -p $(DEVICE)  # edit this line for your programmer
 
-USBDRV_DIR = third_party/usbdrv
+USBDRV_DIR = ../third_party/usbdrv
 
 CFLAGS  = -I$(USBDRV_DIR) -I. -DDEBUG_LEVEL=0
 
-OBJECTS = $(USBDRV_DIR)/usbdrv.o $(USBDRV_DIR)/usbdrvasm.o $(USBDRV_DIR)/oddebug.o usb_keyboard.o
+
+OBJECTS = $(USBDRV_DIR)/usbdrv.o $(USBDRV_DIR)/usbdrvasm.o $(USBDRV_DIR)/oddebug.o usb_keyboard.o flap.o
 
 COMPILE = avr-gcc -Wall -Os -DF_CPU=$(F_CPU) $(CFLAGS) -mmcu=$(DEVICE)
 
@@ -54,16 +55,15 @@ FUSE_H  = 0xdb
 # symbolic targets:
 help:
 	@echo "This Makefile has no default rule. Use one of the following:"
-	@echo "make hex ........... to build dit-dah.hex and space.hex"
-	@echo "make program ....... to flash fuses and dit-dah firmware"
+	@echo "make hex ........... to build flap.hex"
+	@echo "make program ....... to flash fuses and the flap firmware"
 	@echo "make fuse .......... to flash the fuses"
-	@echo "make flash_dit-dah . to flash the dit-dah firmware"
-	@echo "make flash_space ... to flash the space key firmware"
+	@echo "make flash ......... to flash the flap firmware"
 	@echo "make clean ......... to delete objects and hex file"
 
-hex: dit-dah.hex space.hex
+hex: flap.hex
 
-program: flash_dit-dah fuse
+program: flash fuse
 
 # rule for programming fuse bits:
 fuse:
@@ -72,23 +72,32 @@ fuse:
 	$(AVRDUDE) -U hfuse:w:$(FUSE_H):m -U lfuse:w:$(FUSE_L):m
 
 # rule for uploading firmware:
-flash_dit-dah: dit-dah.hex
-	$(AVRDUDE) -U flash:w:dit-dah.hex:i
-
-flash_space: space.hex
-	$(AVRDUDE) -U flash:w:space.hex:i
+flash: flap.hex
+	$(AVRDUDE) -U flash:w:flap.hex:i
 
 # rule for deleting dependent files (those which can be built by Make):
 clean:
-	rm -f dit-dah.{hex,lst,obj,cof,list,map,eep.hex,elf,s} space.{hex,lst,obj,cof,list,map,eep.hex,elf,s} *.o $(USBDRV_DIR)/*.o $(USBDRV_DIR)/oddebug.s $(USBDRV_DIR)/usbdrv.s
+	rm -f flap.{hex,lst,obj,cof,list,map,eep.hex,elf,s} $(OBJECTS) $(USBDRV_DIR)/oddebug.s $(USBDRV_DIR)/usbdrv.s
 
 # Generic rule for compiling C files:
 .c.o:
 	$(COMPILE) -c $< -o $@
 
-dit-dah.o: dit-dah.c usbconfig.h usb_keyboard.h
+$(USBDRV_DIR)/usbdrvasm.o: $(USBDRV_DIR)/usbdrvasm.S \
+   $(USBDRV_DIR)/usbportability.h $(USBDRV_DIR)/usbdrv.h \
+   usbconfig.h $(USBDRV_DIR)/usbdrvasm12.inc \
+   $(USBDRV_DIR)/asmcommon.inc
 
-space.o: space.c usbconfig.h usb_keyboard.h
+$(USBDRV_DIR)/oddebug.o: $(USBDRV_DIR)/oddebug.c $(USBDRV_DIR)/oddebug.h \
+   $(USBDRV_DIR)/usbportability.h
+
+$(USBDRV_DIR)/usbdrv.o: $(USBDRV_DIR)/usbdrv.c $(USBDRV_DIR)/usbportability.h \
+   $(USBDRV_DIR)/usbdrv.h usbconfig.h $(USBDRV_DIR)/oddebug.h
+
+usb_keyboard.o: usb_keyboard.c usb_keyboard.h $(USBDRV_DIR)/usbdrv.h \
+    usbconfig.h $(USBDRV_DIR)/usbportability.h
+
+flap.o: flap.c usbconfig.h usb_keyboard.h
 
 # Generic rule for assembling Assembler source files:
 .S.o:
@@ -104,18 +113,10 @@ space.o: space.c usbconfig.h usb_keyboard.h
 
 # file targets:
 
-dit-dah.elf: $(OBJECTS) dit-dah.o
-	$(COMPILE) -o dit-dah.elf $(OBJECTS) dit-dah.o
+flap.elf: $(OBJECTS)
+	$(COMPILE) -o flap.elf $(OBJECTS)
 
-space.elf: $(OBJECTS) space.o
-	$(COMPILE) -o space.elf $(OBJECTS) space.o
-
-dit-dah.hex: dit-dah.elf
-	rm -f dit-dah.hex dit-dah.eep.hex
-	avr-objcopy -j .text -j .data -O ihex dit-dah.elf dit-dah.hex
-	avr-size dit-dah.hex
-
-space.hex: space.elf
-	rm -f space.hex space.eep.hex
-	avr-objcopy -j .text -j .data -O ihex space.elf space.hex
-	avr-size space.hex
+flap.hex: flap.elf
+	rm -f flap.hex flap.eep.hex
+	avr-objcopy -j .text -j .data -O ihex flap.elf flap.hex
+	avr-size flap.hex
