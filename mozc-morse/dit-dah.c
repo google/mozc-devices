@@ -68,7 +68,7 @@ int __attribute__((noreturn)) main(void)
   /* timer 1 CTC mode, counts up at f[clock]/8 [Hz] */
   TCCR1B = (1 << WGM12) | (1 << CS11);
   TCNT1 = 0;
-  OCR1A = (unsigned int)F_CPU / 8 * 100;  /* 100Hz, T=10 milliseconds */
+  OCR1A = F_CPU / 8 / 100;  /* 100Hz, T=10 milliseconds */
 
   uchar key = 0;
 
