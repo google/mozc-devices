@@ -52,7 +52,7 @@ usb_keyboard.h
 romaji_dit-dah.txt
 
 =====================================
- Building & Wriging Firmware
+ Building & Writing Firmware
 =====================================
 
 * Building firmware binariese
