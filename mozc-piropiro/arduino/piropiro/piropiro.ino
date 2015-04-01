@@ -26,7 +26,7 @@
 #define COMMIT_TIME (600 / INTERVAL_MSEC)
 
 #define ROWS 5
-#define COLS 9
+#define COLS 10
 
 const char* characters[ROWS * COLS] = {
   "a", "i", "u", "e", "o",
@@ -37,6 +37,7 @@ const char* characters[ROWS * COLS] = {
   "ha", "hi", "hu", "he", "ho",
   "ma", "mi", "mu", "me", "mo",
   "ya", "ya", "yu", "yu", "yo",
+  "ra", "ri", "ru", "re", "ro",
   "wa", "wo", "nn", ",", "."
 };
 
