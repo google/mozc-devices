@@ -23,11 +23,12 @@ piropiro version.
  Files
 =====================================
 
-* stl/*  -- 3D shape data of mechanical parts
+* arduino/piropiro/piropiro.ino -- firmware source code (Arduino sketch)
+* stl/* -- 3D shape data of mechanical parts
 * README.txt  -- this file
-* circuit.png -- Circuit diagram
-* assembly.png -- Mechanical assembly instruction
-* arduino/piropiro/piropiro.ino -- Firmware source code (Arduino sketch)
+* assembly.png -- mechanical assembly instruction
+* circuit.png -- circuit diagram
+* example.jpg -- photograph of an example device
 
 
  Building your device
@@ -58,6 +59,8 @@ Additionally, you need these parts.
 ## Assembly
 
 See the circuit diagram and mechanical assembly instruction images.
+
+Also refer the example device in the photo.
 
 ## RN42 module configuration
 
@@ -93,17 +96,15 @@ The commands will configure the module as follows:
 * HID flag register = 0 (keyboard)
 
 
-## Electronic Circuit Assembly
+ Using piropiro input
+=====================================
 
-See the circuit diagram for detail.
+## Power supply
+
 When operating the device, supply power by USB cables to both RN-42-EK and
 Arduino Nano. You can alternatively supply 3.3V power to RN-42-EK from Arduino's
 3.3V pin, but this requires a modification on RN-42-EK to disconnect the
 regulator's output pin on it from the circuit.
-
-
- Using piropiro input
-=====================================
 
 ## Sensor adjustment
 
@@ -112,7 +113,6 @@ regulator's output pin on it from the circuit.
 2. Turn on Arduino Nano and adjust the optical axis of the sensor. The LED on
 Arduino board is lit while the sensor is collectly sensing the tip of the
 paper tube between 50mm -- 350mm.
-
 
 ## Bluetooth pairing
 
