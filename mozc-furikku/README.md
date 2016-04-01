@@ -35,6 +35,7 @@ Circuit diagram and firmware of Google Japanese Input physical flick version.
 * Arduino Nano * 1
 * RN-42-I/RM * 1
 * SJoys 2-axes joystick module (Sainsmart) * 12
+* MCP3208 * 3
 * 0.1uF ceramic capacitor * 4
 * 470 ohm resistor * 1
 * 1k ohm resistor * 1
