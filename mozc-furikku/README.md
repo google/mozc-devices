@@ -13,21 +13,22 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 
- Summary
+Summary
 =====================================
 
 Circuit diagram and firmware of Google Japanese Input physical flick version.
 
 
- Files
+Files
 =====================================
 
 * README.md  -- this file
 * arduino/flick/*  -- firmware source code (Arduino sketch)
 * circuit.png  -- circuit diagram
+* photo/*  -- for reference
 
 
- Building your device
+Building your device
 =====================================
 
 ## Electronic parts
@@ -72,7 +73,7 @@ The commands will configure the module as follows:
 * HID flag register = 0 (keyboard)
 
 
- Using flick input
+Using flick input
 =====================================
 
 ## Power supply
