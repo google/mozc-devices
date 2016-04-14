@@ -3,8 +3,10 @@
 #include <stdint.h>
 #include <stdlib.h>
 
-#define ROWS 5
-#define COLS 20  // Equals to the number of the keys.
+#define ROWS 5          // a i u e o
+#define COLS 20         // Equals to the number of the keys.
+#define FLICKS 12       // Equals to the number of the flick keys.
+#define ADC_BITS 10     // The number of A/D convertor bit width
 
 enum Direction {
   CENTER, LEFT, UP, RIGHT, DOWN, NONE

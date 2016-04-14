@@ -1,14 +1,12 @@
 #include "flick_keyboard.h"
 #include <stdint.h>
 
-#define ADC_BITS 10
-
 void FlickKeyboard::ProcessSensorData(const SensorData& data, size_t maxKeyNum,
                                       const char** outputStrings, int* nOutputs) {
-  const int kButtonSwapTable[20] = {8, 4, 0, 9, 5, 1, 10, 6, 2, 11, 7, 3,12,13,14,15,16,17,18,19};
-  const int kAxesSwapTable[20] = {0, 4, 8, 1, 5, 9, 2, 6, 10, 3, 7, 11,12,13,14,15,16,17,18,19};
+  const int kButtonSwapTable[COLS] = {8, 4, 0, 9, 5, 1, 10, 6, 2, 11, 7, 3, 12, 13, 14, 15, 16, 17, 18, 19};
+  const int kAxesSwapTable[COLS] =   {0, 4, 8, 1, 5, 9, 2, 6, 10, 3, 7, 11, 12, 13, 14, 15, 16, 17, 18, 19};
   const char* characters[COLS][ROWS] = {
-    {"a", "i", "u", "e", "o"},
+    {"a", "i", "u", "e", "o"},      // Joystick
     {"ka", "ki", "ku", "ke", "ko"},
     {"sa", "si", "su", "se", "so"},
     {"ta", "ti", "tu", "te", "to"},
@@ -20,14 +18,14 @@ void FlickKeyboard::ProcessSensorData(const SensorData& data, size_t maxKeyNum,
     {"\n", "\b", "", " ", ""},
     {"wa", "wo", "nn", "-", "~"},
     {",", ".", "?", "!", "..."},
-    {"1", "", "", "", ""},
-    {"2", "", "", "", ""},
-    {"3", "", "", "", ""},
-    {"4", "", "", "", ""},
-    {"5", "", "", "", ""},
-    {"6", "", "", "", ""},
-    {"7", "", "", "", ""},
-    {"8", "", "", "", ""}
+    {"\x08", "", "", "", ""},       // Tact switch
+    {"\x07", "", "", "", ""},
+    {" ", "", "", "", ""},
+    {"\x10", "", "", "", ""},
+    {"", "", "", "", ""},
+    {"\x11", "", "", "", ""},
+    {"", "", "", "", ""},
+    {"", "", "", "", ""}
   };
   *nOutputs = 0;
   for (size_t i = 0; i < COLS; i++) {
@@ -47,8 +45,7 @@ FlickKeyboard::FlickKeyboard() {
   }
 }
 
-Direction FlickKeyboard::ConvertToFlickState(
-  int16_t x, int16_t y, bool buttonPressed) {
+Direction FlickKeyboard::ConvertToFlickState(int16_t x, int16_t y, bool buttonPressed) {
   const int16_t adScale = 1 << ADC_BITS;
   const int16_t adCenter = adScale / 2;
   const int16_t threshold = adScale * 0.4;

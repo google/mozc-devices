@@ -3,19 +3,24 @@
 #include "flick_keyboard.h"
 
 // Number of A/D converter ICs.
-const int kNumAdcIc = 3;
-const int kCsPins[kNumAdcIc] = {8, 9, 10};
+const int kNumAdcIc = 3;                    // MCP3008 x 3 Chips
+const int kCsPins[kNumAdcIc] = {8, 9, 10};  // MCP3008 SS Pins in Arduino nano
+
+// Tact Switch(without XY tilt) Setting
 const int kStaticButtonPins[8] = {4, 5, 6, 7, A3, A2, A1, A0};
+
+// LED Setting on Arduino nano
 const int kLedPin = 13;
 
-const int kMcp23017Addr = 0x20;
+// GPIO to I2C IC Setting
+const int kMcp23017Addr = 0x20;             // I2C Address
 
 FlickKeyboard keyboard;
 
 void setup() {
   Serial.begin(115200);
 
-  pinMode(kLedPin, OUTPUT);
+  pinMode(kLedPin, OUTPUT);                 // Led
   digitalWrite(kLedPin, LOW);
 
   for (size_t i = 0; i < kNumAdcIc; i++) {
@@ -25,17 +30,25 @@ void setup() {
   for (size_t i = 0; i < 8; i++) {
     pinMode(kStaticButtonPins[i], INPUT);
   }
-  SPI.begin();
+  SPI.begin();                              // Enable SPI
   SPI.beginTransaction(SPISettings(1000000, MSBFIRST, SPI_MODE0));
 
-  Wire.begin();
+  Wire.begin();                            // Enable I2C
   Mcp23017Init();
 }
 
 void loop() {
+  if (Serial.available() && Serial.read() == '!') {
+    EchoBackMode();
+  }
+
   SensorData keys;
-  ReadVolumes(keys.axes);
-  ReadSwitches(keys.button);
+  ReadVolumes(keys.axes);                        // Read flick axes
+  for (size_t i = FLICKS; i < COLS; i++) {       // Set center position to tact switch button's axes
+    keys.axes[i*2] = (1 << (ADC_BITS-1));
+    keys.axes[i*2+1] = (1 << (ADC_BITS-1));
+  }
+  ReadSwitches(keys.button);                    // Read flick buttons
 
   int nOutputs;
   const char* outputs[COLS];
@@ -43,34 +56,10 @@ void loop() {
   for (size_t i = 0; i < nOutputs; i++) {
     Serial.print(outputs[i]);
   }
-/*
-  Serial.print("Button " );
-  for (size_t i = 0; i < 20; i++) {
-    Serial.print(i);
-    Serial.print(":");
-    Serial.print(keys.button[i]);
-    Serial.print(" ");
-  }
-  Serial.println();
-Serial.print("Stick " );
-  for (size_t i = 0; i < 12; i++) {
-    Serial.print(i);
-    Serial.print(":");
-    Serial.print(keys.axes[i]);
-    Serial.print(" ");
-  }
-  Serial.println();
-  Serial.print("      " );
-  for (size_t i = 0; i < 12; i++) {
-    Serial.print(i+12);
-    Serial.print(":");
-    Serial.print(keys.axes[i+12]);
-    Serial.print(" ");
-  }
-  Serial.println();
-*/
-  delay(100);
+  delay(10);
 }
+
+// ==========================================================================
 
 void Mcp23017Init() {
   Wire.beginTransmission(kMcp23017Addr);   // Set input mode on port A
@@ -107,6 +96,7 @@ void ReadSwitches(bool* button) {
   Mcp23017PortB = Wire.read();             // Store port B data to Mcp23017PortA
   Mcp23017PortB = ~Mcp23017PortB;          // Invert port B
 
+
   byte TestBit = 0x01;
   for (size_t i = 0; i < 8; i++) {
     button[i] = ((Mcp23017PortA & TestBit) != 0);
@@ -122,6 +112,7 @@ void ReadSwitches(bool* button) {
   }
 }
 
+// Enable MCP3008 SS pins
 void SelectChip(uint8_t id) {
   if (id > kNumAdcIc) {
     return;
@@ -132,13 +123,14 @@ void SelectChip(uint8_t id) {
   digitalWrite(kCsPins[id], LOW);
 }
 
+// Disable MCP3008 SS pins
 void DeselectChips() {
   for (size_t i = 0; i < kNumAdcIc; i++) {
     digitalWrite(kCsPins[i], HIGH);
   }
 }
 
-// Fetch a ADC result of a specified channel from a MCP3208.
+// Fetch a ADC result of a specified channel from a MCP3008.
 int16_t ReadMcp3008Adc(uint8_t chipId, uint8_t channel) {
   SelectChip(chipId);
   SPI.transfer(0x01);                             // Send start bit
@@ -157,8 +149,6 @@ void ReadVolumes(uint16_t* data) {
   }
 }
 
-/*
-
 // Passes through any serial input to the output.
 // This mode can be used to configure RN-42 using serial terminal
 // connected to Arduino.
@@ -170,19 +160,3 @@ void EchoBackMode() {
   }
 }
 
-void loop() {
-  if (Serial.available() && Serial.read() == '!') {
-    EchoBackMode();
-  }
-
-  SensorData keys;
-  ReadVolumes(keys.axes);
-  ReadSwitches(keys.button);
-  int nOutputs;
-  const char* outputs[COLS];
-  keyboard.ProcessSensorData(keys, COLS, outputs, &nOutputs);
-  for (size_t i = 0; i < nOutputs; i++) {
-    Serial.print(outputs[i]);
-  }
-}
-*/
