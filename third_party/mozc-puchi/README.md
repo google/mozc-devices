@@ -46,5 +46,5 @@ puchi-puchi version.
       * handheld.igs
 	  * handheld.stl
 	  * handheld.stp
-   * Arduino/ ----> Arduino sketch file to drive board (Arduino mini)
+   * Arduino/ ----> Arduino sketch file to drive board (Arduino Micro)
       * handheld/handheld.ino
