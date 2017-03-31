@@ -30,7 +30,7 @@ puchi-puchi version.
  Files
 =====================================
 
-* readme.md ----> this file
+* README.md ----> this file
 * LICENSE ----> license file
 * circuit/
    * circuit.jpg ----> circuit diagram of both desktop/handheld devices
