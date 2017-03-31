@@ -23,7 +23,7 @@ puchi-puchi version.
 
 ### Handheld type
 
-* Arduino Nano
+* Arduino Micro
 * Microswitch * 5
 
 
