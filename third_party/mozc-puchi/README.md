@@ -15,7 +15,7 @@ puchi-puchi version.
 
 ### Desktop type
 
-* Arduino Leonard
+* Arduino Leonardo
 * Adafruit motor driver shield
 * Microswitch * 5
 * LED * 5
@@ -39,7 +39,7 @@ puchi-puchi version.
       * desktop.igs
       * desktop.stl
       * desktop.stp
-   * Arduino/ ----> Arduino sketch file to drive board (Leonard)
+   * Arduino/ ----> Arduino sketch file to drive board (Leonardo)
       * desktop/desktop.ino
 * handheld/
    * 3Dprinter/ ----> data to print for 3D printer
