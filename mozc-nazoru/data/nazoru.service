@@ -1,0 +1,15 @@
+[Unit]
+Description=nazoru-input daemon
+
+[Service]
+Type=simple
+Environment=PYTHONIOENCODING=utf-8
+ExecStart=/usr/bin/env nazoru-input
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=nazoru-input
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
