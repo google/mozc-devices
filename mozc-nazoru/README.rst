@@ -71,7 +71,7 @@ has non-connected pads and connectors for SPI and I2C. The connector
 itself should be compatible with other Raspberry Pi, but we tested it
 only on Raspberry Pi Zero W.
 
-.. image:: ./board/schematic.png
+.. image:: https://raw.githubusercontent.com/google/mozc-devices/master/mozc-nazoru/board/schematic.png
    :width: 1000px
 
 Raspberry Pi Setup
