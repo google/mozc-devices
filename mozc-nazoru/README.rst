@@ -12,15 +12,31 @@ character.
 Software Usage
 --------------
 
-Input Characters
+Install and Try
 ~~~~~~~~~~~~~~~~
+
+Please make sure your local environemnt has packages as follows.
+
+For Ubuntu/Debian:
 
 .. code:: shell
 
-     $ pip install .
-     $ nazoru-input
+  $ sudo apt install libffi-dev libcairo2 # For Ubuntu/Debian
 
-By running the commands above, you can make your own machine into an
+For macOS:
+
+.. code:: shell
+
+  $ brew install cairo  # For macOS
+
+After that, you can try nazoru-input after installing it from pip.
+
+.. code:: shell
+
+   $ pip install nazoru-input
+   $ nazoru-input
+
+Using ``nazoru-input``, You can make your own machine into an
 input device which accepts scribbles on the connected keyboard and send
 characters via bluetooth. At the beginning, this script scans
 connected keyboards and starts listening to inputs from one of the
@@ -28,20 +44,24 @@ keyboards. Then it translates a sequence of keydowns into a predicted
 character considering pressed timings, and send the character to the
 target device paired by bluetooth.
 
-If you want to try it for development, you can use ``-e`` option.
+If you want to try it for development, you can download the source from
+github and use ``-e`` option.
 
 .. code:: shell
 
-     $ pip install -e .
-     $ nazoru-input
+   $ sudo apt install libffi-dev libcairo2 # For Ubuntu/Debian
+   $ git clone https://github.com/google/mozc-devices.git
+   $ cd mozc-devices/mozc-nazoru
+   $ pip install -e .
+   $ nazoru-input
 
 Training Model
 ~~~~~~~~~~~~~~
 
 .. code:: shell
 
-     $ pip install .
-     $ nazoru-training ./data/strokes.zip
+   $ curl -LO https://github.com/google/mozc-devices/raw/master/mozc-nazoru/data/strokes.zip
+   $ nazoru-training ./strokes.zip
 
 We have a script to generate a trained model which recognizes input
 characters from scribbles. This script renders input stroke data into
@@ -51,7 +71,7 @@ neural network model and the optimizer tunes the model to fit the data.
 Once the training is done, the script outputs the trained graph, which
 you can use for your own device. In the case where you install
 ``nazoru-training`` from pip, you can find ``strokes.zip`` at here:
-https://github.com/google/mozc-devices/mozc-nazoru/data/strokes.zip
+https://github.com/google/mozc-devices/blob/master/mozc-nazoru/data/strokes.zip
 
 You can change some configurations by passing command line flags (e.g.
 path to the input/output files, hyper-parameters). Run
@@ -79,72 +99,73 @@ Raspberry Pi Setup
 
 **Step 0 - Prepare your Raspberry Pi**
 
-  Please prepare your Raspberry Pi, SD card initialized by RASPBIAN
-  image, and RN42 module. Connect your Raspberry Pi with RN42 as the
-  schematic shows. Please make sure you can have access to the internet
-  and also it has enough disk space to install packages on the following
-  steps.
+Please prepare your Raspberry Pi, SD card initialized by RASPBIAN
+image, and RN42 module. Connect your Raspberry Pi with RN42 as the
+schematic shows. Please make sure you can have access to the internet
+and also it has enough disk space to install packages on the following
+steps.
 
 **Step 1 - Setup UART to RN42**
 
-  If you try it on Raspberry Pi Zero W or Raspberry Pi 3, you need to
-  have additional settings for the serial communication because they
-  equipped a wireless module connected by the UART. See details at `an
-  official document
-  <https://www.raspberrypi.org/documentation/configuration/uart.md>`_.
-  In short, you need to add ``enable_uart=1`` to ``/boot/config.txt`` on
-  your Raspberry Pi.
+If you try it on Raspberry Pi Zero W or Raspberry Pi 3, you need to
+have additional settings for the serial communication because they
+equipped a wireless module connected by the UART. See details at `an
+official document
+<https://www.raspberrypi.org/documentation/configuration/uart.md>`_.
+In short, you need to add ``enable_uart=1`` to ``/boot/config.txt`` on
+your Raspberry Pi.
 
 **Step 2 - Initial setup for RN42**
 
-  You need to write your initial setup to RN42. At first, install screen
-  and open ``/dev/serial0`` for configuration.
+You need to write your initial setup to RN42. At first, install screen
+and open ``/dev/serial0`` for configuration.
 
-  .. code:: shell
+.. code:: shell
 
-    $ sudo apt install screen
-    $ sudo screen /dev/serial0 115200
+  $ sudo apt install screen
+  $ sudo screen /dev/serial0 115200
 
-  After that, please type the following commands. Note that you need to
-  type ENTER after input commands. For example, please type ``$$$``
-  and ENTER to execute ``$$$`` command.
+After that, please type the following commands. Note that you need to
+type ENTER after input commands. For example, please type ``$$$``
+and ENTER to execute ``$$$`` command.
 
-  1. ``$$$`` : Get into the command mode. The green LED will blink
-     faster.
-  2. ``+`` : You can see what you type.
-  3. ``SD,0540`` : Set the device class to keyboard.
-  4. ``S~,6`` : Set the profile to HID.
-  5. ``SH,0200`` : Set the HID flag to keyboard.
-  6. ``SN,nazoru-input`` : Set the device name as nazoru-input. You
-     can name it as you want.
-  7. ``R,1`` : Reboot RN42.
+1. ``$$$`` : Get into the command mode. The green LED will blink
+   faster.
+2. ``+`` : You can see what you type.
+3. ``SD,0540`` : Set the device class to keyboard.
+4. ``S~,6`` : Set the profile to HID.
+5. ``SH,0200`` : Set the HID flag to keyboard.
+6. ``SN,nazoru-input`` : Set the device name as nazoru-input. You
+   can name it as you want.
+7. ``R,1`` : Reboot RN42.
 
-  You can quit the screen by ``C-a k``.
+You can quit the screen by ``C-a k``.
 
 **Step 3 - Download and install nazoru-input**
 
-  We provide a service file at ``data/nazoru.service`` to launch
-  ``nazoru-input`` when booting. You can install it by uncomment
-  ``data_files`` entry in ``setup.py``. Also, before installing this
-  package, We'd strongly recommend you to install some  package from apt
-  repository as follows, so that you can install pre-built packages.
+We provide a service file at ``data/nazoru.service`` to launch
+``nazoru-input`` when booting. You can install it by uncomment
+``data_files`` entry in ``setup.py``. Also, before installing this
+package, We'd strongly recommend you to install some  package from apt
+repository as follows, so that you can install pre-built packages.
 
-  .. code:: shell
+.. code:: shell
 
-    $ sudo apt install git python-pip python-numpy python-cairocffi \
-      python-h5py python-imaging python-scipy libblas-dev liblapack-dev \
-      python-dev libatlas-base-dev gfortran python-setuptools \
-      python-html5lib
-    $ sudo pip install http://ci.tensorflow.org/view/Nightly/job/nightly-pi-zero/219/artifact/output-artifacts/tensorflow-1.6.0-cp27-none-any.whl
-    $ git clone https://github.com/google/mozc-devices
-    $ cd mozc-devices/mozc-nazoru
-    $ sudo pip install . # If you want to develop nazoru-input, please use 'pip install -e .' instead.
+  $ sudo apt install git python-pip python-numpy python-cairocffi \
+    python-h5py python-imaging python-scipy libblas-dev liblapack-dev \
+    python-dev libatlas-base-dev gfortran python-setuptools \
+    python-html5lib
+  $ sudo pip install http://ci.tensorflow.org/view/Nightly/job/nightly-pi-zero/219/artifact/output-artifacts/tensorflow-1.6.0-cp27-none-any.whl
+  $ git clone https://github.com/google/mozc-devices
+  $ cd mozc-devices/mozc-nazoru
+  $ vi setup.py  # Remove '#' for data_files to install nazoru.service.
+  $ sudo pip install . # If you want to develop nazoru-input, please use 'sudo pip install -e .' instead.
 
 **Step 4 - Enjoy!**
 
-  .. code:: shell
+.. code:: shell
 
-    $ sudo nazoru-input # If you miss sudo, nazoru-input may use a DummyBluetooth object.
+  $ sudo nazoru-input # If you miss sudo, nazoru-input may use a DummyBluetooth object.
 
 Training Data Format
 --------------------
@@ -233,12 +254,10 @@ Authors
 -------
 
 Machine Learning:
-
-  Shuhei Iitsuka <tushuhei@google.com>
+Shuhei Iitsuka <tushuhei@google.com>
 
 Hardwares, system setups:
-
-  Makoto Shimazu <shimazu@google.com>
+Makoto Shimazu <shimazu@google.com>
 
 License
 -------
