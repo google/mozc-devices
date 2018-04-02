@@ -24,7 +24,7 @@ def read_file(name):
 
 setup(
     name='nazoru-input',
-    version='0.1.1',
+    version='0.1.2',
     author='Makoto Shimazu',
     author_email='shimazu@google.com',
     url='https://landing.google.com/tegaki',
