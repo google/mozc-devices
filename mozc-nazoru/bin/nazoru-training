@@ -266,12 +266,12 @@ if __name__ == '__main__':
   )
   parser.add_argument(
       '--no_directional_feature',
-      action='store_false',
+      action='store_true',
       help='Not to use directional feature.'
   )
   parser.add_argument(
       '--no_temporal_feature',
-      action='store_false',
+      action='store_true',
       help='Not to use temporal feature.'
   )
 
