@@ -1,6 +1,10 @@
 Gboard Physical Handwriting Version
 ===================================
 
+.. image:: https://badge.fury.io/py/nazoru-input.svg
+   :target: https://pypi.python.org/pypi/nazoru-input/
+   :alt: PyPi
+
 Gboard Physical Handwriting Version is a device which translates your
 scribble on your keyboard into a character. You can make your own Gboard
 Physical Handwriting Version by printing your own printed circuit board
