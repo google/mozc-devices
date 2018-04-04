@@ -15,11 +15,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+import codecs
 import os
 from setuptools import setup, find_packages
 
 def read_file(name):
-  with open(os.path.join(os.path.dirname(__file__), name), 'r') as f:
+  with codecs.open(
+      os.path.join(os.path.dirname(__file__), name), 'r', 'utf-8') as f:
     return f.read().strip()
 
 setup(
