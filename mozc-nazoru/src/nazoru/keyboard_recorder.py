@@ -82,7 +82,7 @@ class KeyboardRecorderFromConsole(KeyboardRecorder):
     recording = False
     start_time = None
     last_time = None
-    wait_seconds = 2
+    wait_seconds = 0.5
     data = []
     reset_raw_mode = _set_raw_mode_stdin()
     try:
