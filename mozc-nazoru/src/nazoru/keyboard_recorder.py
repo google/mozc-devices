@@ -159,7 +159,7 @@ class KeyboardRecorderFromEvdev(KeyboardRecorder):
       52: '.',
       53: '/'
   }
-  WAIT_SECONDS = 2
+  WAIT_SECONDS = 0.5
 
   def __init__(self, verbose=False):
     if evdev is None:
