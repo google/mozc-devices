@@ -16,7 +16,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-class LEDBase():
+class LEDBase(object):
   def __init__(self, pin):
     self._pin = pin
   def on(self):
@@ -24,6 +24,8 @@ class LEDBase():
   def off(self):
     pass
   def blink(self, interval):
+    pass
+  def set_brightness(self, brightness):
     pass
 
 try:
@@ -134,6 +136,9 @@ except ImportError as e:
 
   class LED(LEDBase):
     pass
+  class SlowLED(LEDBase):
+    def __init__(self, pin, delay_ms):
+      super(SlowLED, self).__init__(pin)
 
 LED_BLUE = LED(38)
 LED_RED = LED(40)
