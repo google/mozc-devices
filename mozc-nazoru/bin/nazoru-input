@@ -21,7 +21,7 @@ import time
 LED_RED.blink(1)
 LED_CHASSIS.on()
 time.sleep(1)
-LED_CHASSIS.set_brightness(5)
+LED_CHASSIS.off()
 
 import argparse
 import os
@@ -52,7 +52,7 @@ def main():
 
   LED_RED.off()
   LED_BLUE.blink(1)
-  LED_CHASSIS.set_brightness(15)
+  LED_CHASSIS.set_brightness(5)
 
   print('Ready. Please input your scrrible.')
   while True:
@@ -69,7 +69,7 @@ def main():
     LED_RED.on()
     result = predictor.predict_top_n(data, 5)
     LED_RED.off()
-    LED_CHASSIS.set_brightness(15)
+    LED_CHASSIS.set_brightness(5)
 
     print('\n=== RESULTS ===')
     for item in result:
