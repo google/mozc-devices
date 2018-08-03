@@ -67,6 +67,7 @@ setup(
         'tensorflow',
         'enum34;python_version<"3.4"',
         'pyserial',
-        'evdev;platform_system=="Linux"'
+        'evdev;platform_system=="Linux"',
+        'wiringpi'
     ]
   )
