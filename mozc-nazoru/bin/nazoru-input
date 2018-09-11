@@ -16,15 +16,18 @@
 # limitations under the License.
 
 from __future__ import print_function
+
+# Surpress warnings. Please unvail these warnings when development.
+import warnings
+warnings.filterwarnings("ignore", category=RuntimeWarning)
+warnings.filterwarnings("ignore", category=FutureWarning)
+
 from nazoru.led import LED_BLUE, LED_RED, LED_CHASSIS
 import time
 LED_RED.blink(1)
 LED_CHASSIS.on()
 time.sleep(1)
 LED_CHASSIS.off()
-
-import warnings
-warnings.filterwarnings("ignore", category=RuntimeWarning)
 
 import argparse
 import os
