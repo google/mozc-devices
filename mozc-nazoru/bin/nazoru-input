@@ -23,6 +23,9 @@ LED_CHASSIS.on()
 time.sleep(1)
 LED_CHASSIS.off()
 
+import warnings
+warnings.filterwarnings("ignore", category=RuntimeWarning)
+
 import argparse
 import os
 from nazoru import get_default_graph_path
@@ -67,7 +70,16 @@ def main():
 
     LED_CHASSIS.set_brightness(100)
     LED_RED.on()
-    result = predictor.predict_top_n(data, 5)
+    try:
+      result = predictor.predict_top_n(data, 5)
+    except IndexError:
+      # This is possible when pressing keys we don't use for learning.
+      print('Invalid input. (out of range)')
+      continue
+    except ValueError:
+      # This is possible when pressing only one key.
+      print('Invalid input. (one key)')
+      continue
     LED_RED.off()
     LED_CHASSIS.set_brightness(5)
 
