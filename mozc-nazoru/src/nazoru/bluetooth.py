@@ -54,4 +54,7 @@ class Bluetooth():
     if cmd not in self.UART_CODES:
       print('Unknown Command: {}'.format(cmd))
       return
+    if self._dummy:
+      print('bluetooth: command({})'.format(cmd))
+      return
     self.send(struct.pack('b', self.UART_CODES[cmd]))
