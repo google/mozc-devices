@@ -76,8 +76,13 @@ class KeyboardRecorderFromConsole(KeyboardRecorder):
   def _read_ansi_escape(self):
     seq = sys.stdin.read(1)
     if seq == '[':
+      # CSI code
+      # ['\e', '[', Rep (optional), Code]
       code = sys.stdin.read(1)
-      self.log('CSI code: {}'.format(code))
+      rep = 1
+      if code.isdigit():
+        rep = int(code)
+        code = sys.stdin.read(1)
       if code == 'A':
         return (None, 'KEY_UP')
       if code == 'B':
@@ -86,7 +91,11 @@ class KeyboardRecorderFromConsole(KeyboardRecorder):
         return (None, 'KEY_RIGHT')
       if code == 'D':
         return (None, 'KEY_LEFT')
-      self.log('it was unknown code...')
+      if code == '~':
+        if rep == 3:
+          return (None, 'KEY_DELETE')
+      self.log('it was unknown code: ' +
+               'rep={}, code={}'.format(rep, code))
     else:
       self.log('unknown seq: {}'.format(seq))
     return (None, None)

@@ -42,6 +42,7 @@ class Bluetooth():
   # See http://ww1.microchip.com/downloads/en/DeviceDoc/bluetooth_cr_UG-v1.0r.pdf
   # for detail.
   UART_CODES = {
+    'KEY_DELETE': 4,
     'KEY_RIGHT': 7,
     'KEY_BACKSPACE': 8,
     'KEY_ENTER': 10,
