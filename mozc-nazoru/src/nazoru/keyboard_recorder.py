@@ -73,6 +73,33 @@ class KeyboardRecorderFromConsole(KeyboardRecorder):
     KeyboardRecorder.__init__(self, verbose)
     self.log('Input from console')
 
+  def _read_ansi_escape(self):
+    seq = sys.stdin.read(1)
+    if seq == '[':
+      # CSI code
+      # ['\e', '[', Rep (optional), Code]
+      code = sys.stdin.read(1)
+      rep = 1
+      if code.isdigit():
+        rep = int(code)
+        code = sys.stdin.read(1)
+      if code == 'A':
+        return (None, 'KEY_UP')
+      if code == 'B':
+        return (None, 'KEY_DOWN')
+      if code == 'C':
+        return (None, 'KEY_RIGHT')
+      if code == 'D':
+        return (None, 'KEY_LEFT')
+      if code == '~':
+        if rep == 3:
+          return (None, 'KEY_DELETE')
+      self.log('it was unknown code: ' +
+               'rep={}, code={}'.format(rep, code))
+    else:
+      self.log('unknown seq: {}'.format(seq))
+    return (None, None)
+
   def record(self):
     """
     Returns a tuple of |data| and |command|.
@@ -93,8 +120,12 @@ class KeyboardRecorderFromConsole(KeyboardRecorder):
           key = None
         finally:
           now = datetime.datetime.now()
-        if key == '\n':
-          return (None, None)
+        if key == '\x1b':
+          return self._read_ansi_escape();
+        elif key == '\n':
+          return (None, 'KEY_ENTER')
+        elif key == '\b' or key == '\x7f':
+          return (None, 'KEY_BACKSPACE')
         elif key:
           if not recording:
             recording = True

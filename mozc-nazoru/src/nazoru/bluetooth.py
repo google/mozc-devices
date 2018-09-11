@@ -42,6 +42,7 @@ class Bluetooth():
   # See http://ww1.microchip.com/downloads/en/DeviceDoc/bluetooth_cr_UG-v1.0r.pdf
   # for detail.
   UART_CODES = {
+    'KEY_DELETE': 4,
     'KEY_RIGHT': 7,
     'KEY_BACKSPACE': 8,
     'KEY_ENTER': 10,
@@ -53,5 +54,8 @@ class Bluetooth():
   def command(self, cmd):
     if cmd not in self.UART_CODES:
       print('Unknown Command: {}'.format(cmd))
+      return
+    if self._dummy:
+      print('bluetooth: command({})'.format(cmd))
       return
     self.send(struct.pack('b', self.UART_CODES[cmd]))
