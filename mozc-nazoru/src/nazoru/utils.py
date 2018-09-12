@@ -15,6 +15,7 @@
 # limitations under the License.
 
 import time
+import sys
 
 class Measure():
   def __init__(self, tag):
@@ -26,3 +27,8 @@ class Measure():
   def __exit__(self, type, value, traceback):
     now = time.time()
     print('[{0}] {1} ms'.format(self._tag, (now - self._start)*1E3))
+
+def clear_screen():
+  sys.stdout.write('\033[2J')
+  sys.stdout.write('\033[H')
+  sys.stdout.flush()
