@@ -23,6 +23,7 @@ import os
 import struct
 import sys
 import termios
+from .utils import clear_screen
 
 try:
   import evdev
@@ -130,10 +131,12 @@ class KeyboardRecorderFromConsole(KeyboardRecorder):
           if not recording:
             recording = True
             start_time = datetime.datetime.now()
+            clear_screen()
           elapsed_time = now - start_time
           elapsed_ms = int(elapsed_time.total_seconds() * 1000)
           last_time = now
           data.append((key, elapsed_ms))
+          sys.stdout.write('%s\r' % (' '.join(datum[0] for datum in data)))
           self.log(key, elapsed_ms)
         if last_time and (now - last_time).total_seconds() > wait_seconds:
           break
@@ -260,6 +263,8 @@ class KeyboardRecorderFromEvdev(KeyboardRecorder):
         start_time = now
       elapsed_ms = int((now - start_time).total_seconds() * 1000)
       data.append((self.KEYS[event.code], elapsed_ms))
+      clear_screen()
+      sys.stdout.write('%s\r' % (' '.join(datum[0] for datum in data)))
     return (data, None)
 
 InputSource = Enum('InputSource', 'EVDEV CONSOLE')

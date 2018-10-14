@@ -31,8 +31,10 @@ LED_CHASSIS.off()
 
 import argparse
 import os
+import unicodedata
 from nazoru import get_default_graph_path
-from nazoru.core import create_keyboard_recorder, Bluetooth, NazoruPredictor
+from nazoru.core import (
+    create_keyboard_recorder, Bluetooth, NazoruPredictor, clear_screen)
 
 def main():
   FLAGS = None
@@ -60,7 +62,7 @@ def main():
   LED_BLUE.blink(1)
   LED_CHASSIS.set_brightness(5)
 
-  print('Ready. Please input your scrrible.')
+  print('Ready. Please scrrible on your keyboard.')
   while True:
     data, command = recorder.record()
     if command is not None:
@@ -86,13 +88,19 @@ def main():
     LED_RED.off()
     LED_CHASSIS.set_brightness(5)
 
-    print('\n=== RESULTS ===')
+    clear_screen()
+    print('\n===== RESULTS =====')
     for item in result:
-      print(u'%s (%s): %.5f' % (item[0], item[1], item[2]))
-    print('===============\n')
+      if unicodedata.east_asian_width(item[0]) in {'W', 'F'}:
+        surface = item[0]
+      else:
+        surface = item[0] + ' '
+      print(u'%s (%4s): %.5f' % (surface, item[1], item[2]))
+    print('===================\n')
 
     most_likely_result = result[0]
-    print(u'%s (%s)' % (most_likely_result[0], most_likely_result[1]))
+    print(u'prediction: %s (%s)' % (
+      most_likely_result[0], most_likely_result[1]))
     bt_connection.send(most_likely_result[1])
 
 if __name__ == '__main__':

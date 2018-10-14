@@ -23,4 +23,4 @@ from .nazorunet import nazorunet
 from .nazorunet import Conv
 from .nazorunet import DepthSepConv
 from .predictor import NazoruPredictor
-
+from .utils import clear_screen
