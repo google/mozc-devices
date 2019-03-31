@@ -1,22 +1,29 @@
-Circuit diagram, firmware source code and Romaji table for physical input devices for Google Japanese Input announced on April 1st.
+Circuit diagram, firmware source code and Romaji table for physical input devices for Google Japanese Input and Gboard announced on **April 1st**.
 
-Mozc-Morse originates from Google Japanese Input Morse version announced on April 1st 2012.
-http://www.google.co.jp/ime/-.-.html
+This is not an officially supported Google product.
 
-<a href='http://www.youtube.com/watch?feature=player_embedded&v=u5AYb778pwA' target='_blank'><img src='http://img.youtube.com/vi/u5AYb778pwA/0.jpg' width='425' height=344 /></a>
+# Products
 
+Please refer to the README in each directory for more details.
 
-Mozc-Flap originates from Google Japanese Input Patapata version announced on April 1st 2013.
-http://www.google.co.jp/ime/patapata/
+* [Google Japanese Input Morse version](http://www.google.co.jp/ime/-.-.html), [blog post](https://japan.googleblog.com/2012/04/google.html) (Apr 1, 2012)
+  * /third_party/mozc-morse
+* [Google Japanese Input Patapata version](http://www.google.co.jp/ime/patapata/), [blog post](https://japan.googleblog.com/2013/04/google-patapata.html) (Apr 1, 2013)
+  * /mozc-flap
+* [Google Japanese Input Piropiro version](https://www.google.co.jp/ime/___o/), [blog post](https://japan.googleblog.com/2015/04/piropiro.html) (Apr 1, 2015)
+  * /mozc-piropiro
+* [Google Japanese Input Physical Flick version](https://www.google.co.jp/ime/furikku/), [blog post](https://japan.googleblog.com/2016/04/furikku.html) (Apr 1, 2016)
+  * /mozc-furikku
+* [Google Japanese Input Puchi Puchi version](https://landing.google.co.jp/ime/ooooo/), [blog post](https://japan.googleblog.com/2017/04/ooooo.html) (Apr 1, 2017)
+  * /third_party/mozc-puchi
+* [Gboard Physical Handwriting version](https://landing.google.co.jp/tegaki/), [blog post](https://japan.googleblog.com/2018/04/tegaki.html) (Apr 1, 2018)
+  * /mozc-nazoru
+* [Gboard Spoon Bending version](https://landing.google.co.jp/---o/), [blog post](https://japan.googleblog.com/2019/04/mageru.html) (Apr 1, 2019)
+  * /mozc-mageru for firmware, schematics, and PCB layout.
+  * /third_party/mozc-mageru for 3D model.
 
-<a href='http://www.youtube.com/watch?feature=player_embedded&v=HzUDAaYMNsA' target='_blank'><img src='http://img.youtube.com/vi/HzUDAaYMNsA/0.jpg' width='425' height=344 /></a>
+# Background stories (in Japanese)
 
-
-These devices showed in the videos are actually connected to a PC via USB.  This project hosts the source code and technical documents of those devices.
-
-Background stories (in Japanese):
   * Morse version - http://googledevjp.blogspot.jp/2012/06/google.html
   * Flip version - http://googledevjp.blogspot.jp/2013/10/google.html
-
-For Mozc-morse, the romaji table decodes dits-dahs to hiragana.  By using resource in this project, you can reproduce a physical morse key and try typing text with Mozc and Google Japanese Input.
-
+  * Physical Handwriting version - https://developers-jp.googleblog.com/2018/04/tegaki.html
