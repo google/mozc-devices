@@ -19,3 +19,4 @@ Background stories (in Japanese):
   * Flip version - http://googledevjp.blogspot.jp/2013/10/google.html
 
 For Mozc-morse, the romaji table decodes dits-dahs to hiragana.  By using resource in this project, you can reproduce a physical morse key and try typing text with Mozc and Google Japanese Input.
+
