@@ -68,6 +68,6 @@ setup(
         'enum34;python_version<"3.4"',
         'pyserial',
         'evdev;platform_system=="Linux"',
-        'wiringpi'
+        'wiringpi;platform_system=="Linux"'
     ]
   )
