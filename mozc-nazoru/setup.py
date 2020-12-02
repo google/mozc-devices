@@ -61,10 +61,9 @@ setup(
     install_requires=[
         'np_utils',
         'cairocffi<=1.0.0',
-        'numpy',
         'h5py',
         'pillow',
-        'tensorflow<=1.11.0',
+        'tensorflow~=1.15.4',
         'markdown<=3.0.1',
         'enum34;python_version<"3.4"',
         'pyserial',
