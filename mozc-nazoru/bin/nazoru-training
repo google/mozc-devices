@@ -15,8 +15,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from tensorflow.contrib import slim
-from tensorflow.contrib.slim.python.slim.learning import train_step
+import tf_slim as slim
 from tensorflow.python.framework import dtypes
 from tensorflow.python.framework import graph_util
 from tensorflow.python.platform import gfile
@@ -31,7 +30,7 @@ import nazoru.core as nazoru
 import numpy as np
 import os
 import sys
-import tensorflow as tf
+import tensorflow.compat.v1 as tf
 import zipfile
 
 FLAGS = None
@@ -139,6 +138,7 @@ def main(_):
     nazoru.DepthSepConv(kernel=[3, 3], stride=1, depth=128),
   ]
 
+  tf.disable_eager_execution()
   with tf.Graph().as_default():
     tf.logging.set_verbosity(tf.logging.INFO)
 
@@ -176,7 +176,7 @@ def main(_):
     train_op = slim.learning.create_train_op(train_total_loss, optimizer)
 
     def train_step_fn(sess, *args, **kwargs):
-      total_loss, should_stop = train_step(sess, *args, **kwargs)
+      total_loss, should_stop = slim.learning.train_step(sess, *args, **kwargs)
       if train_step_fn.step % FLAGS.n_steps_to_log == 0:
         val_acc = sess.run(val_accuracy)
         tf_logging.info('step: %d, validation accuracy: %.3f' % (
@@ -236,19 +236,19 @@ if __name__ == '__main__':
   parser.add_argument(
       '--output_graph',
       type=str,
-      default='nazoru.pb',
+      default='nazoru_custom.pb',
       help='Where to save the trained graph.'
   )
   parser.add_argument(
       '--optimized_output_graph',
       type=str,
-      default='optimized_nazoru.pb',
+      default='optimized_nazoru_custom.pb',
       help='Where to save the trained graph optimized for inference.'
   )
   parser.add_argument(
       '--saved_model_dir',
       type=str,
-      default='nazoru_saved_model',
+      default='nazoru_saved_model_custom',
       help='Where to save the exported graph.'
   )
   parser.add_argument(

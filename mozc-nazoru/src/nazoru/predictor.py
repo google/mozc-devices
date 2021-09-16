@@ -23,7 +23,7 @@ import numpy as np
 
 def _load_graph(model_file):
   graph = tf.Graph()
-  graph_def = tf.GraphDef()
+  graph_def = tf.compat.v1.GraphDef()
   with open(model_file, "rb") as f:
     graph_def.ParseFromString(f.read())
   with graph.as_default():
@@ -44,7 +44,7 @@ class NazoruPredictor():
       inputs = lib.keydowns2image(data, True, True, 16, 2)
       inputs = np.expand_dims(inputs, axis=0)
     with utils.Measure('sess.run'):
-      with tf.Session(graph=self._graph) as sess:
+      with tf.compat.v1.Session(graph=self._graph) as sess:
         result = sess.run(self._output_operation.outputs[0],
                           {self._input_operation.outputs[0]: inputs})[0]
     return result
