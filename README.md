@@ -21,6 +21,9 @@ Please refer to the README in each directory for more details.
 * [Gboard Spoon Bending version](https://landing.google.co.jp/---o/), [blog post](https://japan.googleblog.com/2019/04/mageru.html) (Apr 1, 2019)
   * /mozc-mageru for firmware, schematics, and PCB layout.
   * /third_party/mozc-mageru for 3D model.
+* [Gboard yunomi version](https://g.co/yunomi/), [blog post](https://japan.googleblog.com/fixme) (Oct 1, 2021)
+  * /mozc-yunomi for firmware, schematics, and PCB layout.
+
 
 # Background stories (in Japanese)
 

@@ -1,0 +1,3 @@
+[submodule "third_party/mozc-yunomi/daprice-keyswitches.pretty"]
+	path = third_party/mozc-yunomi/daprice-keyswitches.pretty
+	url = https://github.com/daprice/keyswitches.pretty
