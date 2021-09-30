@@ -20,8 +20,8 @@ predict input characters from visualized trace.
 """
 
 from collections import namedtuple
-from tensorflow.contrib import slim
-import tensorflow as tf
+import tf_slim as slim
+import tensorflow.compat.v1 as tf
 
 Conv = namedtuple('Conv', ['kernel', 'stride', 'depth'])
 DepthSepConv = namedtuple('DepthSepConv', ['kernel', 'stride', 'depth'])
@@ -161,7 +161,7 @@ def nazorunet(inputs,
               is_training=True,
               min_depth=8,
               depth_multiplier=1.0,
-              prediction_fn=tf.contrib.layers.softmax,
+              prediction_fn=slim.layers.softmax,
               spatial_squeeze=True,
               reuse=None,
               scope='NazoruNet',

@@ -59,15 +59,13 @@ setup(
     # data_files=[('/etc/systemd/system', ['data/nazoru.service'])],
 
     install_requires=[
-        'np_utils',
         'cairocffi',
-        'numpy',
-        'h5py',
         'pillow',
-        'tensorflow',
+        'tensorflow~=2.5.1',
+        'tf_slim~=1.1.0',
         'enum34;python_version<"3.4"',
         'pyserial',
         'evdev;platform_system=="Linux"',
-        'wiringpi'
+        'wiringpi;platform_system=="Linux"'
     ]
   )
