@@ -40,7 +40,7 @@ We need two types of PCBs to build this project.
 
 #### Key-PCB
 
-![pcb1](./images/pcb1.png)
+![key-pcb](./images/key-pcb.png)
 
 Shape: Rectangular.
 
@@ -50,7 +50,7 @@ Number of PCBs required: 12
 
 #### Base-PCB:
 
-![pcb2](./images/pcb2.png)
+![base-pcb](./images/base-pcb.png)
 
 Shape: Dodecagonal
 
