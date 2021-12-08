@@ -1,8 +1,34 @@
+// Uncomment next line if you use ProMicro
+#define PRO_MICRO
 
 // Uncomment next line if your PC thinks this is US keyboard.
 #define JP_KEYBOARD
 
 #include "Keyboard.h"
+
+#ifdef PRO_MICRO
+
+// COLS = 9,8,7,6,5,4
+// ROWS = 18,15,14,16,10
+
+typedef enum {
+  C0 = 9,
+  C1 = 8,
+  C2 = 7,
+  C3 = 6,
+  C4 = 5,
+  C5 = 4,
+  R0 = 18,
+  R1 = 15,
+  R2 = 14,
+  R3 = 16,
+  R4 = 10,
+} Pin;
+
+#define PINS 10
+Pin pins[] = {C0, C1, C2, C3, C4, C5, R0, R1, R2, R3, R4};
+
+#else
 
 // COLS = PD0, PD1, PD2, PD3, PD4, PD5
 // ROWS = PB0, PB1, PB2, PB3, PB4
@@ -24,6 +50,8 @@ typedef enum {
   R3 = ROW + 3,
   R4 = ROW + 4,
 } Pin;
+
+#endif
 
 #define ROWS 5
 #define COLS 12
@@ -174,17 +202,14 @@ uint16_t chars[5][12] = {
     },
 };
 
-void setup() {
-  Keyboard.begin();
-  Serial.begin(9600);
-  DDRD = 0;
-  PORTD = B00111111;
-  DDRB = 0;
-  PORTB = B00011111;
-  delay(100);
-}
-
 void selectRow(Pin p) {
+#ifdef PRO_MICRO
+
+  pinMode(p, OUTPUT);
+  digitalWrite(p, LOW);
+
+#else
+
   bool col = !!(COL & p);
   byte mask = 1 << (p & B01111111);
   if (col) {
@@ -194,12 +219,48 @@ void selectRow(Pin p) {
     DDRB = mask;
     PORTB = ~mask;
   }
+
+#endif
+}
+
+void unselectRows() {
+#ifdef PRO_MICRO
+
+  for (byte i = 0; i < PINS; i++) {
+    pinMode(pins[i], INPUT_PULLUP);
+  }
+
+#else
+
+  DDRD = 0;
+  PORTD = B00111111;
+  DDRB = 0;
+  PORTB = B00011111;
+
+#endif
 }
 
 bool readCol(Pin p) {
+#ifdef PRO_MICRO
+
+  return digitalRead(p) == LOW;
+
+#else
+
   bool col = !!(COL & p);
   byte mask = 1 << (p & B01111111);
   return ((col ? PIND : PINB) & mask) == 0;
+
+#endif
+}
+
+void setup() {
+  Keyboard.begin();
+  Serial.begin(9600);
+
+  unselectRows();
+
+  delay(100);
 }
 
 #define KEYBOARD_REPORT_ID 2
@@ -290,10 +351,7 @@ void loop() {
         sendKeyPush(KEY_ENT, false);
         delay(100);
       }
-      DDRD = 0;
-      PORTD = B00111111;
-      DDRB = 0;
-      PORTB = B00011111;
+      unselectRows();
     }
     Serial.println();
   }
