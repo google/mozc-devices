@@ -25,7 +25,7 @@ typedef enum {
   R4 = 10,
 } Pin;
 
-#define PINS 10
+#define PINS 11
 Pin pins[] = {C0, C1, C2, C3, C4, C5, R0, R1, R2, R3, R4};
 
 #else
