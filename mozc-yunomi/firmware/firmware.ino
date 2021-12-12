@@ -131,74 +131,74 @@ Pin keys[5][12][2] = {
 
 uint16_t chars[5][12] = {
     {
-        0x9BCF,
-        0x9BF5,
-        0x9B8E,
-        0x9BC7,
-        0x9B91,
-        0x9B66,
-        0x9BD4,
-        0x9BC6,
-        0x9C2F,
-        0x9B87,
-        0x9BCF,
-        0x9C53,
+        0x0040,  // @
+        0x002b,  // +
+        0x9c19,  // 鰙
+        0x9c73,  // 鱳
+        0x9c25,  // 鰥
+        0x9baa,  // 鮪
+        0x9c30,  // 鰰
+        0x9c60,  // 鱠
+        0x9bdb,  // 鯛
+        0x9bd6,  // 鯖
+        0x9c39,  // 鰹
+        0x9bf5,  // 鯵
     },
     {
-        0x9C3B,
-        0x9C4F,
-        0x9C5B,
-        0x9C15,
-        0x9C27,
-        0x9C0D,
-        0x9C39,
-        0x9C5F,
-        0x9B73,
-        0x9C08,
-        0x9B8D,
-        0x9C5A,
+        0x0020,  //
+        0x002d,  // -
+        0x0021,  // !
+        0x9bda,  // 鯚
+        0x002c,  // ,
+        0x9bab,  // 鮫
+        0x9c2d,  // 鰭
+        0x9c0a,  // 鰊
+        0x9c58,  // 鱘
+        0x9bf1,  // 鯱
+        0x9c5a,  // 鱚
+        0x9c2f,  // 鰯
     },
     {
-        0x9BE8,
-        0x9BC9,
-        0x9BD2,
-        0x9B97,
-        0x9BB4,
-        0x9BAD,
-        0x9BEF,
-        0x9BD6,
-        0x9BAB,
-        0x9C75,
-        0x9C06,
-        0x9BE2,
+        0x005f,  // _
+        0x002a,  // *
+        0x9b5a,  // 魚
+        0x9bcd,  // 鯍
+        0x9b77,  // 魷
+        0x9be5,  // 鯥
+        0x9c24,  // 鰤
+        0x9c56,  // 鱖
+        0x9c41,  // 鱁
+        0x9c78,  // 鱸
+        0x9be8,  // 鯨
+        0x9c3b,  // 鰻
     },
     {
-        0x9C6A,
-        0x9BF1,
-        0x9B8A,
-        0x9BF3,
-        0x9C78,
-        0x9BD0,
-        0x9BAC,
-        0x9BDB,
-        0x9C16,
-        0x9C31,
-        0x9BB9,
-        0x9B5B,
+        0x003d,  // =
+        0x002f,  // /
+        0x003f,  // ?
+        0x9c7a,  // 鱺
+        0x002e,  // .
+        0x9bb4,  // 鮴
+        0x9b83,  // 鮃
+        0x9bf0,  // 鯰
+        0x9bf3,  // 鯳
+        0x9bac,  // 鮬
+        0x9b5d,  // 魝
+        0x9c4f,  // 鱏
     },
     {
-        0x9C48,
-        0x9C58,
-        0x9C45,
-        0x9C0C,
-        0x9BD4,
-        0x9BF0,
-        0x9C0A,
-        0x9BB8,
-        0x9BCA,
-        0x9C23,
-        0x9C30,
-        0x9B6C,
+        0x9ba8,  // 鮨
+        0x8336,  // 茶
+        0x9c77,  // 鱷
+        0x9b6f,  // 魯
+        0x9c29,  // 鰩
+        0x9b79,  // 魹
+        0x9bd4,  // 鯔
+        0x9b76,  // 魶
+        0x9c0c,  // 鰌
+        0x9bfc,  // 鯼
+        0x9bc9,  // 鯉
+        0x9c27,  // 鰧
     },
 };
 
@@ -334,9 +334,9 @@ void loop() {
   for (int r = 0; r < ROWS; r++) {
     for (int c = 0; c < COLS; c++) {
       Pin* key = keys[r][c];
-      selectRow(key[0]);
+      selectRow(key[1]);
       delayMicroseconds(10);
-      bool pushed = readCol(key[1]);
+      bool pushed = readCol(key[0]);
       Serial.print(pushed ? "1" : "0");
       if (pushed) {
         sendKeyPush(KEY_U, true);
