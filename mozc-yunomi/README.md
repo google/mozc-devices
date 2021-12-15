@@ -19,6 +19,8 @@ The directory structure is as follows:
 
 ![device](./images/device.jpg)
 
+**We also have the Pro Micro version of the device, which is easier to build. Please refer to [the Pro Micro README](./README_promicro.md) if you want to build one with Pro Micro.**
+
 ### Parts
 
 -   Kailh choc key x60
@@ -42,6 +44,8 @@ We need two types of PCBs to build this project.
 
 ![key-pcb](./images/key-pcb.png)
 
+File location: board/key
+
 Shape: Rectangular.
 
 Components: Diodes and key switches.
@@ -51,6 +55,8 @@ Number of PCBs required: 12
 #### Base-PCB:
 
 ![base-pcb](./images/base-pcb.png)
+
+File location: board/base
 
 Shape: Dodecagonal
 
