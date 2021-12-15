@@ -1,8 +1,8 @@
 // Uncomment next line if you use ProMicro
-#define PRO_MICRO
+// #define PRO_MICRO
 
 // Uncomment next line if your PC thinks this is US keyboard.
-#define JP_KEYBOARD
+// #define JP_KEYBOARD
 
 #include "Keyboard.h"
 
