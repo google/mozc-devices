@@ -61,7 +61,7 @@ setup(
     install_requires=[
         'cairocffi',
         'pillow',
-        'tensorflow~=2.5.1',
+        'tensorflow~=2.9.1',
         'tf_slim~=1.1.0',
         'enum34;python_version<"3.4"',
         'pyserial',
