@@ -23,6 +23,8 @@ Please refer to the README in each directory for more details.
   * /third_party/mozc-mageru for 3D model.
 * [Gboard yunomi version](https://g.co/yunomi/), [blog post](https://japan.googleblog.com/2021/10/gboard.html) (Oct 1, 2021)
   * /mozc-yunomi for firmware, schematics, and PCB layout.
+* [Gboard bar version](https://g.co/____), [blog post](https://japan.googleblog.com/2022/10/gboard-2022.html) (Oct 1, 2022)
+  * /mozc-bar for firmware, schematics, and PCB layout.
 
 
 # Background stories (in Japanese)
