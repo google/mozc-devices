@@ -1,6 +1,6 @@
 # Gboard Spoon Bending Version
 
-This contains programs, schematics and board layouts for Gboard Spoon Bending Version, which is released on **Apr 1, 2019**.
+This contains programs, schematics and board layouts for Gboard Spoon Bending Version, which was released on **Apr 1, 2019**.
 
 This is not an officially supported Google product.
 

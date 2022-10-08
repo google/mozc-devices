@@ -1,0 +1,3 @@
+(fp_lib_table
+  (lib (name daprice)(type KiCad)(uri ${KIPRJMOD}/../../../third_party/mozc-yunomi/daprice-keyswitches.pretty)(options "")(descr ""))
+)

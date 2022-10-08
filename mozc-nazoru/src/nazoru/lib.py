@@ -113,7 +113,8 @@ def normalize_x(x):
   x = np.array(x)
   max_ = np.max(x[:, :2], axis=0)
   min_ = np.min(x[:, :2], axis=0)
-  x[:, :2] = (x[:, :2] - min_) / (max_ - min_)
+  dist = max_ - min_
+  x[:, :2] = (x[:, :2] - min_) / np.fmax(dist, np.ones_like(dist) * 0.0001)
   return x
 
 
