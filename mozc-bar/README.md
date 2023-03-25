@@ -59,8 +59,8 @@ We need the following quantities of each kind of PCB:
 ![PCBs](./image/pcbs.jpg)
 
 - Controller x 1
-- Key switch Type A x 9
-- Key switch Type B x 2
+- Key switch Type A x 8
+- Key switch Type B x 3
 - Key switch Type C x 1
 - Key switch Type D x 1
 - Key switch Type E x 1
@@ -72,8 +72,8 @@ We need the following quantities of each kind of PCB:
 The following quantities of each type of 3D print case:
 
 - case/left-tip.stl x 1
-- case/typeA.stl x 9
-- case/typeB.stl x 2
+- case/typeA.stl x 8
+- case/typeB.stl x 3
 - case/typeC.stl x 1
 - case/typeD.stl x 1
 - case/typeE.stl x 1
