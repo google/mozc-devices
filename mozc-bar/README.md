@@ -28,7 +28,7 @@ The directory structure is as follows:
 - [Capacitor 0.1uF](https://akizukidenshi.com/catalog/g/gP-10147/) x 16
 - 2 row 3 column right angle 2.54mm pin headers x 16 ([Cut from this](https://akizukidenshi.com/catalog/g/gC-10903/))
 - 2 row 3 column right angle 2.54mm pin header sockets x 16 ([Cut from this](https://akizukidenshi.com/catalog/g/gC-05756/))
-- 20 mm width x 10 mm height extruded aluminium frame 2389.75mm in length (needed length may vary slightly based on 3D printing size variance)
+- 20 mm width x 10 mm height extruded aluminium frame 2313.75mm in length (needed length may vary slightly based on 3D printing size variance)
 - [M3 6mm slim head screw](https://jp.misumi-ec.com/vona2/detail/221000546066) x 16
 - [M3 5mm Spacer](https://akizukidenshi.com/catalog/g/gP-07471/) x 16
 - [M3 nut](https://akizukidenshi.com/catalog/g/gP-07468/) x 16
@@ -59,8 +59,8 @@ We need the following quantities of each kind of PCB:
 ![PCBs](./image/pcbs.jpg)
 
 - Controller x 1
-- Key switch Type A x 9
-- Key switch Type B x 2
+- Key switch Type A x 8
+- Key switch Type B x 3
 - Key switch Type C x 1
 - Key switch Type D x 1
 - Key switch Type E x 1
@@ -72,8 +72,8 @@ We need the following quantities of each kind of PCB:
 The following quantities of each type of 3D print case:
 
 - case/left-tip.stl x 1
-- case/typeA.stl x 9
-- case/typeB.stl x 2
+- case/typeA.stl x 8
+- case/typeB.stl x 3
 - case/typeC.stl x 1
 - case/typeD.stl x 1
 - case/typeE.stl x 1

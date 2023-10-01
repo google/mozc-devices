@@ -25,6 +25,8 @@ Please refer to the README in each directory for more details.
   * /mozc-yunomi for firmware, schematics, and PCB layout.
 * [Gboard bar version](https://g.co/____), [blog post](https://japan.googleblog.com/2022/10/gboard-2022.html) (Oct 1, 2022)
   * /mozc-bar for firmware, schematics, and PCB layout.
+* [Gboard CAPS version](https://g.co/CAPS), [blog post](https://japan.googleblog.com/2023/10/caps.html) (Oct 1, 2023)
+  * /mozc-caps for firmware and hardware design.
 
 
 # Background stories (in Japanese)
