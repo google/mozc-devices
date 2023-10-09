@@ -46,7 +46,13 @@ const char* characters[] = {"a", "b", "c", "d", "e", "f", "g", "h", "i",
 class Compositor {
  public:
   Compositor() : last_character_unsettled_(false) {}
-  // TODO: add commit() which commits the Japanese composition by Enter key.
+  // Commit the current composition by sending a newline character.
+  void commit() {
+      if (last_character_unsettled_) {
+          bleKeyboard.write('\n');
+          last_character_unsettled_ = false;
+      }
+  }
   void enter();
   void select(const char* str);
 
