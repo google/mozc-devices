@@ -54,13 +54,15 @@ We have tried it with PLA, but it will probably work with ABS as well.
 ## Sensor calibration
 
 1. Open Serial Monitor.
-2. (the home position, which decides when to commit a character)
+2. Send '!' once to disable key output.
+3. (the home position, which decides when to commit a character)
    Bend the sensor slightly and send '0'. Make sure the LED turns off when the spoon is not bent by external force.
-3. (the position for the first letter)
+4. (the position for the first letter)
    Bend the sensor slightly a bit more and send '1'.
-4. (the position for the last letter)
+5. (the position for the last letter)
    Bend the sensor to the end and send '2'.
-5. Send 'w' to save the configuration to EEPROM.
+6. Send 'w' to save the configuration to EEPROM.
+7. Send '!' again to enable key output, or reset the device.
 
 # Wireless Version
 

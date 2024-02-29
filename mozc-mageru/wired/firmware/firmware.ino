@@ -77,14 +77,10 @@ void LoadDefaultConfig() {
 
 void setup() {
   Serial.begin(115200);
+  Keyboard.begin();
   LoadConfig();
   pinMode(kLedPin, OUTPUT);
   digitalWrite(kLedPin, LOW);
-}
-
-void SetupKeyboard() {
-  enable_key_output = true;
-  Keyboard.begin();
 }
 
 void OutputKey(const char* str) {
@@ -152,7 +148,7 @@ void loop() {
 
       // Other debug commands.
       case '!':
-        SetupKeyboard();
+        enable_key_output = !enable_key_output;
         break;
       case ' ':
         // Show sensor status for debugging.
