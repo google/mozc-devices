@@ -1,0 +1,1 @@
+See [Bluetooth物理フリック入力キーボードの組み立て方](http://trac.switch-science.com/wiki/PhysicalFlick)
