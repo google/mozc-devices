@@ -1,0 +1,213 @@
+(footprint "SK6812MINIe (Reverse)"
+	(version 20240108)
+	(generator "pcbnew")
+	(generator_version "8.0")
+	(layer "F.Cu")
+	(property "Reference" "REF**"
+		(at 0 2.75 0)
+		(unlocked yes)
+		(layer "F.SilkS")
+		(uuid "f0529529-e7ad-4a57-8e7c-8304f8fad623")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.1)
+			)
+		)
+	)
+	(property "Value" "SK6812MINIe"
+		(at 0 -3.556 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(uuid "083d266b-e8f8-45fe-a99a-e0833140eab2")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Footprint" "SK6812MINIe (Reverse)"
+		(at 0 -3.048 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "ada22d4b-0035-4ba2-bfd4-5c13580d04b1")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "0a279097-fb8e-4256-8351-f65668097495")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "33b51e5b-386b-4a58-8dae-e5735447e6fe")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(attr through_hole)
+	(fp_line
+		(start -2 -2)
+		(end -2 1.25)
+		(stroke
+			(width 0.1)
+			(type default)
+		)
+		(layer "F.SilkS")
+		(uuid "d276074e-3eb1-41e3-ac25-8f9eeb8842a9")
+	)
+	(fp_line
+		(start -2 1.25)
+		(end -1.25 2)
+		(stroke
+			(width 0.1)
+			(type default)
+		)
+		(layer "F.SilkS")
+		(uuid "a0cd938d-69fd-4778-899c-eb62edbf048d")
+	)
+	(fp_line
+		(start -1.25 2)
+		(end 2 2)
+		(stroke
+			(width 0.1)
+			(type default)
+		)
+		(layer "F.SilkS")
+		(uuid "53cf1a29-b708-41d7-b5f3-3556ea5c1bd7")
+	)
+	(fp_line
+		(start 2 -2)
+		(end -2 -2)
+		(stroke
+			(width 0.1)
+			(type default)
+		)
+		(layer "F.SilkS")
+		(uuid "a70455ac-9fd6-4244-a066-171f4bf503db")
+	)
+	(fp_line
+		(start 2 2)
+		(end 2 -2)
+		(stroke
+			(width 0.1)
+			(type default)
+		)
+		(layer "F.SilkS")
+		(uuid "b7a22319-2db9-45dc-82b8-e1d76e88a7a3")
+	)
+	(fp_rect
+		(start 1.6 -1.4)
+		(end -1.6 1.4)
+		(stroke
+			(width 0.1)
+			(type solid)
+		)
+		(fill none)
+		(layer "User.2")
+		(uuid "023d3fbb-47d4-4673-80bd-cec1d8598f6a")
+	)
+	(fp_rect
+		(start 3 -1.4)
+		(end -3 1.4)
+		(stroke
+			(width 0.1)
+			(type default)
+		)
+		(fill none)
+		(layer "User.2")
+		(uuid "14011cdf-2739-41e7-ba89-c479e0afdf21")
+	)
+	(fp_text user "${REFERENCE}"
+		(at 0 -2.032 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(uuid "222f8e4d-c3d8-487f-b7eb-87c90827f1de")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(pad "" np_thru_hole oval
+		(at -1 0 90)
+		(size 3.5 1.5)
+		(drill oval 3.5 1.5)
+		(layers "F&B.Cu" "*.Mask")
+		(uuid "d335cf29-973d-48d2-9d86-023c8a6b979f")
+	)
+	(pad "" np_thru_hole oval
+		(at 0 -1 180)
+		(size 3.5 1.5)
+		(drill oval 3.5 1.5)
+		(layers "F&B.Cu" "*.Mask")
+		(uuid "3df47cf9-27dc-4c4b-8145-5758815af33e")
+	)
+	(pad "" np_thru_hole oval
+		(at 0 0 90)
+		(size 3.5 1.5)
+		(drill oval 3.5 1.5)
+		(layers "F&B.Cu" "*.Mask")
+		(uuid "05f55096-2580-4a59-ac5f-e7dca0ffc95b")
+	)
+	(pad "" np_thru_hole oval
+		(at 0 1 180)
+		(size 3.5 1.5)
+		(drill oval 3.5 1.5)
+		(layers "F&B.Cu" "*.Mask")
+		(uuid "8b051ef9-20b6-45f2-965a-05da1d06395d")
+	)
+	(pad "" np_thru_hole oval
+		(at 1 0 90)
+		(size 3.5 1.5)
+		(drill oval 3.5 1.5)
+		(layers "F&B.Cu" "*.Mask")
+		(uuid "7978914e-afc7-400b-8225-98ddfcac3a14")
+	)
+	(pad "1" smd rect
+		(at 2.5 -0.762)
+		(size 1.25 1)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(uuid "ed7c6070-e4ae-4ef6-b84d-78cf2f579a28")
+	)
+	(pad "2" smd rect
+		(at 2.5 0.762)
+		(size 1.25 1)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(uuid "6089f4bf-3836-4f78-ae63-fa92da1b501c")
+	)
+	(pad "3" smd rect
+		(at -2.5 0.75)
+		(size 1.25 1)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(uuid "f91154ac-6669-46e5-b592-95a9a1e75aa5")
+	)
+	(pad "4" smd rect
+		(at -2.5 -0.762)
+		(size 1.25 1)
+		(layers "F.Cu" "F.Paste" "F.Mask")
+		(uuid "0c0396b6-ee7b-4ebf-8d4a-1ca94b57e18c")
+	)
+)
