@@ -1,0 +1,29 @@
+<html>
+<button onclick="connect()">キーボードを接続</button>
+<hr>
+<textarea id="text"></textarea>
+<script>
+  async function connect() {
+    const [device] = await navigator.hid.requestDevice({
+      'filters': [
+        { 'vendorId': 1155, 'productId': 22352 }]
+    });
+    // May fail to open common HID devices on macOS.
+    await device.open();
+    device.addEventListener("inputreport", e => {
+      const view = new Uint16Array(e.data.buffer);
+      const codepoint = [];
+      for (code of view) {
+        if (code) {
+          codepoint.push(code);
+        } else {
+          break;
+        }
+      }
+      document.getElementById('text').value +=
+        String.fromCodePoint.apply(null, codepoint);
+    });
+  }
+</script>
+
+</html>
