@@ -55,7 +55,7 @@ Please refer to the README in each directory for more details.
 - [Announce](https://japan.googleblog.com/2013/04/google-patapata.html)
 - [Technical details](http://googledevjp.blogspot.jp/2013/10/google.html)
 - Release date: Apr 1, 2013
-- Source: [/mozc-flap](./mozc-flap)
+- Source: [/third_party/mozc-flap](./third_party/mozc-flap)
 
 </td>
 <td>
@@ -149,7 +149,7 @@ Please refer to the README in each directory for more details.
 
 タネも仕掛けもない、柔軟な入力。
 
-- [Promotional video](https://www.youtube.com/watch?v=guJnFY1R4I0)
+- [Promotional video](https://www.youtube.com/watch?v=DeJY5d14qKs)
 - [Announce](https://japan.googleblog.com/2019/04/mageru.html)
 - Release date: Apr 1, 2019
 - Source:
