@@ -118,7 +118,7 @@ Please refer to the README in each directory for more details.
 
 - [Promotional video](https://www.youtube.com/watch?v=RkJZDvHMyTA)
 - [Announce](https://japan.googleblog.com/2017/04/ooooo.html)
-- Release date: Apr 1, 2016
+- Release date: Apr 1, 2017
 - Source: [/third_party/mozc-puchi](./third_party/mozc-puchi)
 
 </td>
@@ -134,7 +134,7 @@ Please refer to the README in each directory for more details.
 - [Promotional video](https://www.youtube.com/watch?v=guJnFY1R4I0)
 - [Announce](https://japan.googleblog.com/2018/04/tegaki.html)
 - [Technical details](https://developers-jp.googleblog.com/2018/04/tegaki.html)
-- Release date: Apr 1, 2016
+- Release date: Apr 1, 2018
 - Source: [/mozc-nazoru](./mozc-nazoru)
 
 </td>
