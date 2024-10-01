@@ -69,7 +69,7 @@ Please refer to the README in each directory for more details.
 
 - [Promotional video](https://www.youtube.com/watch?v=0u1zoaJYAmw)
 - [Announce](https://blog.google/intl/ja-jp/products/android-chrome-play/2014_04_m9/)
-- Release date: Apr 1, 2016
+- Release date: Apr 1, 2014
 - Source: Not open source
 
 </td>
