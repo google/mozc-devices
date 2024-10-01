@@ -43,8 +43,7 @@ The directory structure is as follows:
 | U1        | STMicro STM32F042F4P6               | 1   |                    |
 | SW1-SW4   | Kailh CPG151101S11-1                | 4   |                    |
 | D1-D4     | OPSCO Optoelectronics SK6812MINI-E  | 4   |                    |
-| D5-D8     | 0805(metric: 2012) Small Signal     | 4   |                    |
-:           : Switching Diode                     :     :                    :
+| D5-D8     | 0805(metric: 2012) Small Signal Switching Diode | 4   |        |
 | C1        | 0402(metric: 1005) Capacitor 0.1uF  | 1   |                    |
 
 The parts that are only on the primary board are not included in the BOM file
