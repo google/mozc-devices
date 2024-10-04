@@ -67,5 +67,6 @@ setup(
         'pyserial',
         'evdev;platform_system=="Linux"',
         'wiringpi;platform_system=="Linux"'
-    ]
+    ],
+    python_requires='>=3.8, <3.12'
   )
