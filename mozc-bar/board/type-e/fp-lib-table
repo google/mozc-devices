@@ -1,3 +1,0 @@
-(fp_lib_table
-  (lib (name holes)(type KiCad)(uri ${KIPRJMOD}/../holes.pretty)(options "")(descr ""))
-)
