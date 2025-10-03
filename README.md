@@ -226,7 +226,7 @@ Please refer to the README in each directory for more details.
 ![dial](./images/dial.webp)
 
 [Gboard ダイヤルバージョン](./mozc-dial/README_ja.md)<br>
-[Gboard double sided version](./mozc-dial)
+[Gboard Dial Version](./mozc-dial)
 
 まるくおさめました。
 
