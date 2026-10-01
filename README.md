@@ -237,4 +237,23 @@ Please refer to the README in each directory for more details.
 
 </td>
 </tr>
+<tr>
+<td>
+
+![conveyorbelt](./images/conveyorbelt.webp)
+
+[Gboard くるくる バージョン](./mozc-conveyorbelt/README_ja.md)<br>
+[Gboard Conveyor Belt version](./mozc-conveyorbelt)
+
+流れるような文字入力を
+
+- [Promotional video](https://www.youtube.com/watch?v=DAn34l_YrUM)
+- [Announce](https://blog.google/intl/ja-jp/products/android-chrome-play/gboard-2026/)
+- Release date: Oct 1, 2026
+- Source: [/mozc-conveyorbelt](./mozc-conveyorbelt)
+
+</td>
+<td>
+</td>
+</tr>
 </table>
